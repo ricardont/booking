@@ -68,12 +68,12 @@ userdel -r postgres
 groupdel postgres
 ```
 ******
-## Start server
+### Start server
 ```sh
 rails s
 ```
-## Yay! You’re on Rails!
-## Install rspec
+### Yay! You’re on Rails!
+### Install rspec
 *add to your gemfile*
 ```sh
 group :development, :test do
@@ -89,7 +89,7 @@ Running via Spring preloader in process 13061
       create  spec/spec_helper.rb
       create  spec/rails_helper.rb
 ```
-## Install webmock
+### Install webmock
 *add webmock to gemfile in the development and test mocks*
 ```sh
  group :development, :test do
@@ -102,10 +102,21 @@ end
 require 'webmock/rspec'
 ```
 
-# Commit changes to  repsitory
+### Commit changes to  repsitory
 ```sh
 git init
 git commit -m "first commit"
 git remote add origin https://github.com/ricardont/booking.git
 git push -u origin master
+```
+##Setup heroku to deployment
+instal heroku cli in local machine
+```sh
+sudo snap install --classic heroku
+```
+create repo in heroku
+```sh
+heroku git:remote -a booking-flights
+git push heroku master 
+$ heroku run  rake db:migrate
 ```
