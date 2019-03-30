@@ -68,12 +68,12 @@ userdel -r postgres
 groupdel postgres
 ```
 ******
-## Start server
+### Start server
 ```sh
 rails s
 ```
-## Yay! You’re on Rails!
-## Install rspec
+### Yay! You’re on Rails!
+### Install rspec
 *add to your gemfile*
 ```sh
 group :development, :test do
@@ -89,7 +89,7 @@ Running via Spring preloader in process 13061
       create  spec/spec_helper.rb
       create  spec/rails_helper.rb
 ```
-## Install webmock
+### Install webmock
 *add webmock to gemfile in the development and test mocks*
 ```sh
  group :development, :test do
@@ -102,10 +102,85 @@ end
 require 'webmock/rspec'
 ```
 
-# Commit changes to  repsitory
+### Commit changes to  repsitory
 ```sh
 git init
 git commit -m "first commit"
 git remote add origin https://github.com/ricardont/booking.git
 git push -u origin master
 ```
+##Setup heroku to deployment
+instal heroku cli in local machine
+```sh
+sudo snap install --classic heroku
+```
+create repo in heroku
+```sh
+heroku git:remote -a booking-flights
+git push heroku master 
+$ heroku run  rake db:migrate
+```
+ at this point I had received the page :
+ ```
+The page you were looking for doesn't exist.
+You may have mistyped the address or the page may have moved.
+ ```
+ and I thank it was not propoerly depployed, but there was no errors, so I just create a welcome controller, I created a new branch first to leave my master intacted in case of failure, and push to heroku master from a non master branche using the following command:
+ ```sh
+ git push heroku setup_heroku:master
+ ```
+ and resulted greate I saw the welcome page at heroku
+
+## Loads airports data base
+To convert lower case is ctrl + k, release k without holding ctrl and then press once l for lowercase or u to uppercase
+see columns model in rails console
+Airport.column_names
+ migration to remove columns:
+
+ rails g migration RemoveFromModel
+ class RemoveFromAirport < ActiveRecord::Migration[5.2]
+ def change
+  remove_column :airports, :type
+  remove_column :airports, :source
+ end
+end
+
+remove all
+Model.delete_all
+
+rails db:seed RAILS_ENV=test
+rails db:seed RAILS_ENV=development
+###Seeds
+ I get the csv file from  [Open Flights airports db]( https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat "https://openflights.org") 
+
+ ```
+**Airport ID**  Unique OpenFlights identifier for this airport.
+**Name**  Name of airport. May or may not contain the City name.
+**City**  Main city served by airport. May be spelled differently from Name.
+**Country** Country or territory where airport is located. See countries.dat to cross-reference to ISO 3166-1 codes.
+**IATA**  3-letter IATA code. Null if not assigned/unknown.
+**ICAO**  4-letter ICAO code.
+**Null** if not assigned.
+**Latitude**  Decimal degrees, usually to six significant digits. Negative is South, positive is North.
+**Longitude** Decimal degrees, usually to six significant digits. Negative is West, positive is East.
+**Altitude**  In feet.
+**Timezone**  Hours offset from UTC. Fractional hours are expressed as decimals, eg. India is 5.5.
+**DST** Daylight savings time. One of E (Europe), A (US/Canada), S (South America), O (Australia), Z (New Zealand), N (None) or U (Unknown). See also: Help: Time
+**Tz** database time zone Timezone in "tz" (Olson) format, eg. "America/Los_Angeles".
+**Type**  Type of the airport. Value "airport" for air terminals, "station" for train stations, "port" for ferry terminals and "unknown" if not known. In airports.csv, only type=airport is included.
+**Source**  Source of this data. "OurAirports" for data sourced from OurAirports, "Legacy" for old data not matched to OurAirports (mostly DAFIF), "User" for unverified user contributions. In airports.csv, only source=OurAirports is included.
+ ```
+ in rspec helper 
+added database cleaner to remove testing database records and load seeds in rspec_helper
+
+```sh
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    Rails.application.load_seed # loading seeds
+  end
+```
+
+
+
+ ## create searching function
+ At first a method search was going to be deinfed in teh controllor, after research i determining screating activerecord scope 
