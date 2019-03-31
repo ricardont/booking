@@ -11,8 +11,6 @@ class CreateAirports < ActiveRecord::Migration[5.2]
       t.integer :altitude
       t.string :dst
       t.string :tz
-      t.string :type
-      t.string :source
 
       t.timestamps
     end

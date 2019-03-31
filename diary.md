@@ -184,3 +184,18 @@ added database cleaner to remove testing database records and load seeds in rspe
 
  ## create searching function
  At first a method search was going to be deinfed in teh controllor, after research i determining screating activerecord scope 
+
+ ##setup heroku database
+ Host
+ec2-184-73-216-48.compute-1.amazonaws.com
+Database
+da84d0cre65i93
+User
+xgkmcyzyjfylqn
+Port
+5432
+Password
+79a886c47e908eedd328cc8bd5dcd32ffb978bcebb947919faf9e80895181c74
+
+
+ figaro heroku:set -e production
