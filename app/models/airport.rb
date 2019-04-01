@@ -1,3 +1,3 @@
 class Airport < ApplicationRecord
-	scope :search,  -> (key)  { where(" city LIKE ? or name LIKE ? or iata LIKE ? ", "#{key.to_s}%", "#{key.to_s}%", "#{key.to_s}%"  ) }
+	scope :search,  -> (key)  { where(" city ILIKE ? or name ILIKE ? or iata ILIKE ? ", "%#{key.to_s}%", "%#{key.to_s}%", "%#{key.to_s}%"  ) }
 end

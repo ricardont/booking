@@ -199,3 +199,14 @@ Password
 
 
  figaro heroku:set -e production
+
+ This is to run migrations on heroku and run seeds
+```sh
+ heroku run rake db:migrate
+ heroku run rake db:seed
+```
+
+push to heroku from non master branch
+```sh
+git push heroku local_branch:master
+```

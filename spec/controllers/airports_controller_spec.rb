@@ -13,9 +13,13 @@ RSpec.describe AirportsController, type: :controller do
 		end
 	end
 	describe 'retrieve airports' do 	
-		it 'searching in city, name, iata code' do
-			get :search, params: { key: "Dallas" }  
-			expect(JSON.parse(response.body).length).to eq(4)
+		it 'searching  by iata' do
+			get :search, params: { key: "cuu" }  
+			expect(JSON.parse(response.body).length).to eq(1)
+		end
+		it 'searching by city' do
+			get :search, params: { key: "dallas" }  
+			expect(JSON.parse(response.body).length).to eq(2)
 		end
 	end
    
