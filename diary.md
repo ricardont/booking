@@ -210,3 +210,5 @@ push to heroku from non master branch
 ```sh
 git push heroku local_branch:master
 ```
+
+## Installing webmock to test rest api

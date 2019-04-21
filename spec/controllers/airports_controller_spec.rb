@@ -19,7 +19,7 @@ RSpec.describe AirportsController, type: :controller do
 		end
 		it 'searching by city' do
 			get :search, params: { key: "dallas" }  
-			expect(JSON.parse(response.body).length).to eq(2)
+			expect(JSON.parse(response.body).length).to eq(4)
 		end
 	end
    
