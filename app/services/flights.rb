@@ -1,7 +1,7 @@
 	class Flights
 	  
 	  def self.search( params={})
-	  	flights_api_url = "https://api.skypicker.com/flights?limit=1"	
+	  	flights_api_url = ENV['flights_api_url'].dup	
 	  	#api_params = ["flyFrom", "to", "dateFrom", "adults" "children", "infants"]
 	  	url = params.inject(flights_api_url) { | u, (k,v) | u << "&#{k.to_s}=#{v.to_s}" }
 	  	p url
