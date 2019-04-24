@@ -1,8 +1,9 @@
 	class Flights
-	  @@flights_api_url = ENV['flights_api_url'].dup
+	  
 	  def self.search( params={})
+	  	flights_api_url = ENV['flights_api_url'].dup
 	  	#api_params = ["flyFrom", "to", "dateFrom", "adults" "children", "infants"]
-	  	url = params.inject(@@flights_api_url) { | u, (k,v) | u << "&#{k.to_s}=#{v.to_s}" }
+	  	url = params.inject(flights_api_url) { | u, (k,v) | u << "&#{k.to_s}=#{v.to_s}" }
 	  	p url
 	  	p url
 	   JSON.parse( RestClient.get url )["data"].map { | row | 
