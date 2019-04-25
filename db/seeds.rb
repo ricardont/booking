@@ -21,3 +21,7 @@ csv.each do |row|
 	t.dst = row[8]
   t.save
 end
+
+Airline.create( iata: "Y4", name: "Volaris", logo_sm: "https://images.kiwi.com/airlines/32/Y4.png", logo_md: "https://images.kiwi.com/airlines/64/Y4.png", logo_lg: "https://images.kiwi.com/airlines/128/Y4.png")
+Airline.create( iata: "VB", name: "VivaAerobus", logo_sm: "https://images.kiwi.com/airlines/32/VB.png", logo_md: "https://images.kiwi.com/airlines/64/VB.png", logo_lg: "https://images.kiwi.com/airlines/128/VB.png")
+Airline.create( iata: "40", name: "Interjet", logo_sm: "https://images.kiwi.com/airlines/32/40.png", logo_md: "https://images.kiwi.com/airlines/64/40.png", logo_lg: "https://images.kiwi.com/airlines/128/VB.png")

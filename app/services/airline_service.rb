@@ -1,4 +1,4 @@
-class Airline
+class AirlineService
 
   def self.details(iata)
     airline_logo_url = "https://images.kiwi.com/airlines/"
