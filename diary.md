@@ -200,6 +200,8 @@ Password
 
  figaro heroku:set -e production
 
+ set figaro vars in heroku
+figaro heroku:set
  This is to run migrations on heroku and run seeds
 ```sh
  heroku run rake db:migrate

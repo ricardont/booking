@@ -11,7 +11,7 @@
 	    flight_airlines = row['airlines'].map { |e| 
 	    	Airline.select("iata, name, logo_sm, logo_md, logo_lg").where(iata: e)[0].as_json   
 	    }
-	    standarize_keys(row).slice('fly_from', 'fly_to', 'country_from', 'country_to', 'city_from', 'city_to','price', 'flight_duration', 'a_time', 'd_time', 'distance').merge!('routes' => routes).merge!('airlines' => flight_airlines)
+	    standarize_keys(row).slice('fly_from', 'fly_to', 'country_from', 'country_to', 'city_from', 'city_to', 'price', 'flight_duration', 'a_time', 'd_time', 'distance').merge!('routes' => routes).merge!('airlines' => flight_airlines)
 	   }
 	  end
 	  private
