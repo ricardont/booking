@@ -22,6 +22,15 @@ csv.each do |row|
   t.save
 end
 
-Airline.create( iata: "Y4", name: "Volaris", logo_sm: "https://images.kiwi.com/airlines/32/Y4.png", logo_md: "https://images.kiwi.com/airlines/64/Y4.png", logo_lg: "https://images.kiwi.com/airlines/128/Y4.png")
-Airline.create( iata: "VB", name: "VivaAerobus", logo_sm: "https://images.kiwi.com/airlines/32/VB.png", logo_md: "https://images.kiwi.com/airlines/64/VB.png", logo_lg: "https://images.kiwi.com/airlines/128/VB.png")
-Airline.create( iata: "40", name: "Interjet", logo_sm: "https://images.kiwi.com/airlines/32/40.png", logo_md: "https://images.kiwi.com/airlines/64/40.png", logo_lg: "https://images.kiwi.com/airlines/128/VB.png")
+airline_logo_url = "https://images.kiwi.com/airlines"
+ airline_name_api = JSON.parse( RestClient.get "https://api.skypicker.com/airlines" ) 
+ airline_name_api.map { |row|
+  t=Airline.new
+  t.iata = row['id']
+  t.name = row['name']
+  t.logo_sm = "#{airline_logo_url}/32/#{row['id']}.png"
+  t.logo_md = "#{airline_logo_url}/64/#{row['id']}.png"
+  t.logo_lg = "#{airline_logo_url}/128/#{row['id']}.png"
+  t.save
+ }
+ 
