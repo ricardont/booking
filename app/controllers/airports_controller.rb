@@ -12,4 +12,8 @@ class AirportsController < ApplicationController
 			render :json => Airport.search(params[:key])
 		end
 	end
+	private 
+	def airport_params
+     params.require(:key)
+	end
 end
