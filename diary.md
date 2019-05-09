@@ -214,3 +214,11 @@ git push heroku local_branch:master
 ```
 
 ## Installing webmock to test rest api
+
+## To use haml views the haml-rails gem is necessary
+## I had to convert all erb files to haml  with 
+```sh
+rake haml:erb2haml
+```
+## Issue, the applicato n layout was not loading 
+  The Issue was I had accidentally created the main screen controller inhereted from ActionController::Base instead of ApplicationConroller
