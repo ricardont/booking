@@ -1,0 +1,25 @@
+%div.container
+	=form_tag "flights/search", :method => :get , remote: true do
+		%div.form-row
+			%div.col-md-3
+				=label_tag "fly_from", "Origin" 
+				=text_field_tag "fly_from" , nil,  class:"form-control"
+			%div.col-md-3
+				=label_tag "fly_to", "Destiny" 
+				=text_field_tag "fly_to", nil,  class:"form-control"
+			%div.col-md-1
+				=label_tag "adults", "Adults"
+				=number_field_tag "adults", "Adults", class:"form-control", min:1, max:7
+			%div.col-md-1
+				=label_tag "children", "Children"
+				=number_field_tag "children", "Children", class:"form-control", min:0, max:7
+			%div.col-md-2
+				=label_tag "date_from", "Date" 
+				=date_field_tag "date_from" , "date_from",  class:"form-control"
+			%div.col-md-2
+				=label_tag "return_from", "Return Date" 
+				=date_field_tag "return_from" , "return_from",  class:"form-control"
+		%div.form-row
+			%div.col-md-offset-5.col-md-2	
+				=label_tag "blank", " "
+				=submit_tag "Search",  class:"btn btn-info form-control"  
