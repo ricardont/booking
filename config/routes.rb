@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root 'main#index'
   get  '/airports', to: 'airports#index'
   get  '/airports/:id', to: 'airports#show'
-  get  '/airports/search/:key', to: 'airports#search'
+  get  '/airports/search/:key', to: 'airports#search', as: :airports_search
   get  '/flights/search/', to: 'flights#search'
 end
