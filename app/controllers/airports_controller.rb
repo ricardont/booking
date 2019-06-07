@@ -1,19 +1,11 @@
 class AirportsController < ApplicationController
 	def index
-		render :json => Airport.all 
-	end
-	def show
-		if params[:id] 
-			render :json => Airport.find(params[:id])
-		end
-	end
-	def search
-		if params[:key]
-			render :json => Airport.search(params[:key])
+		if params[:term]
+			render :json => Airport.search(params[:term])
 		end
 	end
 	private 
 	def airport_params
-     params.require(:key)
+     params.require(:term)
 	end
 end

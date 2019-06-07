@@ -3,7 +3,7 @@
 		%div.form-row
 			%div.col-md-3
 				=label_tag "fly_from", "Origin" 
-				=text_field_tag "fly_from" , params[:key],  class:"form-control search-query",   placeholder: "Search Airport Origin", type: "search", data: {autocomplete airports_search }
+				=text_field :text, :fly_from, data: { autocomplete_source: '/airports.json' }, class: "form-control ", placeholder: "Origen", required: true
 			%div.col-md-3
 				=label_tag "fly_to", "Destiny" 
 				=text_field_tag "fly_to", nil,  class:"form-control"
