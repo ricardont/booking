@@ -1,7 +1,8 @@
 class FlightsController < ApplicationController
 	protect_from_forgery with: :exceptions
 	def search
-	  render :json => Flights.search(flight_params.to_h)
+	  @flights = Flights.search(flight_params.to_h)
+	  render :json => @flights
 	end
 	private 
 	def flight_params
