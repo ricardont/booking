@@ -2,22 +2,22 @@
 	=form_tag "flights/search", :method => :get , remote: true do
 		%div.form-row
 			%div.col-md-3
-				=label_tag "fly_from", "Origen" 
+				=label_tag "fly_from_visible", "Origen" 
 				=text_field_tag :fly_from_visible, nil, data: { autocomplete_source: airports_path }, class: "form-control ", placeholder: "Aeropuerto, ciudad"
 				=hidden_field_tag :fly_from, nil,  class: "form-control ",  required: true
 			%div.col-md-3
-				=label_tag "fly_to", "Destino" 
+				=label_tag "fly_to_visible", "Destino" 
 				=text_field_tag :fly_to_visible, nil, data: { autocomplete_source: airports_path }, class: "form-control ", placeholder: "Aeropuerto, ciudad"
 				=hidden_field_tag :fly_to, nil,  class: "form-control ",  required: true
 			%div.col-md-1
 				=label_tag "adults", "Adults"
-				=number_field_tag "adults", "Adults", class:"form-control", min:1, max:7
+				=number_field_tag "adults", "Adults", class:"form-control", min:1, max:7, value:"1"
 			%div.col-md-1
 				=label_tag "children", "Children"
 				=number_field_tag "children", "Children", class:"form-control", min:0, max:7
 			%div.col-md-2
 				=label_tag "date_from", "Date" 
-				=date_field_tag "date_from" , "date_from",  class:"form-control"
+				=date_field_tag "date_from" , "date_from",  class:"form-control",  value: Date.today+1, min:Date.today
 			%div.col-md-2
 				=label_tag "return_from", "Return Date" 
 				=date_field_tag "return_from" , "return_from",  class:"form-control"
