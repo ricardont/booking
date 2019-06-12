@@ -14,10 +14,13 @@
 				=number_field_tag "adults", "Adults", class:"form-control", min:1, max:7, value:"1"
 			%div.col-md-1
 				=label_tag "children", "Children"
-				=number_field_tag "children", "Children", class:"form-control", min:0, max:7
+				=number_field_tag "children", "Children", class:"form-control", min:0, max:7			 	
 			%div.col-md-2
-				=label_tag "date_from", "Date" 
-				=date_field_tag "date_from" , "date_from",  class:"form-control",  value: Date.today+1, min:Date.today
+				=label_tag "date_from", "Fecha de Salida"
+				#date_from_cont.input-group.date				 
+					=text_field_tag :date_from, nil, class: "form-control",  value: (Date.today+1).strftime('%m/%d/%y'), min:Date.today
+					%span.input-group-addon
+						%span.glyphicon.glyphicon-calendar
 			%div.col-md-2
 				=label_tag "return_from", "Return Date" 
 				=date_field_tag "return_from" , "return_from",  class:"form-control"

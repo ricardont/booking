@@ -28,6 +28,7 @@ gem 'figaro'
 gem 'rest-client'
 gem "haml-rails"
 gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

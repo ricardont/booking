@@ -14,6 +14,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
 //= require turbolinks
 //= require jquery-ui/widgets/autocomplete
 //= require_tree .
