@@ -1,1 +1,24 @@
-%strong.code#message Flights view
+%div.panel.panel-default
+	- @flights.map do |flight|
+		.panel-body{style: "font-size:17px;"}
+			.col-xs-3.col-sm-2.col-md-2{align: "center"}
+				%span{style: "font-size:10px; color:gray;"} 
+					Origen:
+					= flight["city_from"] 
+					Destino:
+					= flight["city_to"]
+			.col-xs-3.col-sm-3.col-md-4
+				%span 
+					Salida:
+					= flight["d_time"]
+					Llegada:
+					= flight["a_time"]
+				%span{style: "font-size:14px; color:gray;"}
+			.col-xs-3.col-sm-3.col-md-4
+				%span
+					= flight["distance"]
+			.col-xs-3.col-sm-3.col-md-2
+				%span{style: " font-weight: bold;"} 
+					Price $
+					= flight["price"]
+					MXN

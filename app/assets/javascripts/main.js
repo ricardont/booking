@@ -10,7 +10,7 @@ $(document).ready(function(){
    autocomplete_airports('#fly_from');
    autocomplete_airports('#fly_to');
   $("#date_from_cont").datepicker({ 
-    format: 'mm/dd/yyyy',
+    format: 'dd/mm/yyyy',
     autoclose: true, 
     todayHighlight: true,
     startDate: new Date()  
