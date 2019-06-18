@@ -1,7 +1,18 @@
 # Developer Diary
 
 ## Install ruby 
+```sh
+gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+\curl -sSL https://get.rvm.io | bash
+\curl -sSL https://get.rvm.io | bash -s stable --ruby
+```
 ## install Rails
+install git
+```sh
+
+install node js
+```sh
+ sudo apt-get install node.js
 ```sh
   gem install rails
 ```
@@ -20,7 +31,7 @@
 *Now you can create the role  for both dev and test environments*
 ```sh
   create role booking_dev with createdb login password '1234';
-  CREATE ROLE  < * you should receive this message, no need to type it *
+  CREATE ROLE  < * you should  receive this message, no need to type it *
   create role booking_test with createdb login password '1234';
   CREATE ROLE  < * you should receive this message, no need to type it *
 
@@ -222,3 +233,47 @@ rake haml:erb2haml
 ```
 ## Issue, the applicato n layout was not loading 
   The Issue was I had accidentally created the main screen controller inhereted from ActionController::Base instead of ApplicationConroller
+
+## RVM basic usage
+```sh
+   rvm install ruby2.4.0
+   rvm list
+   rvm --default 2.4.0
+```
+
+## VAGrant VAGrant VAGrant VAGrant
+install vagrant
+instal vrtual box
+look for machine (ubuntu rais)
+download machine
+vagrant init
+vagrant up
+vagrant ssh
+###shut down vagrant machine
+vagrant halt
+###vagrant shared directory
+/vagrant where vagrantfile is located
+#cant connect to localhost on rails app
+add the following line to vagrantfile
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
+  reboot the vagrant machine with vagrant halt and vagrant up and run rails app with
+ ```sh 
+  rails s -b 0.0.0.0
+ ```
+ ##setting up postgresql in vagrant machine 
+ sudo -u postgreS psql 
+THIS DID NOT WORKED THIS TIME >>
+```sh    
+  create role booking_dev with createdb login password '1234';
+  CREATE ROLE  < * you should  receive this message, no need to type it *
+  create role booking_test with createdb login password '1234';
+  CREATE ROLE  < * you should receive this message, no need to type it *
+ ```
+ THIS WORKED:
+ ```sh    
+  create database booking_dev;
+  create user booking_dev with encrypted password '1234';
+  grant all  privileges on database booking_dev to booking_dev;
+```
+##append rails from ajax result in container
+layout false in the controller , to get rid of of the layout from that response since that must be isolated

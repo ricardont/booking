@@ -1,9 +1,10 @@
 class FlightsController < ApplicationController
 	protect_from_forgery with: :exceptions
+	layout false
 	def search
 	  	@flights = Flights.search(flight_params.to_h)
 		respond_to do |format|
-  			format.html
+  			format.js
   			format.json { render json: @flights }
 		end
 	  #render :json => @flights

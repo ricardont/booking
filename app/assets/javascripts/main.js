@@ -15,4 +15,8 @@ $(document).ready(function(){
     todayHighlight: true,
     startDate: new Date()  
   });
+  $("#search_form").on ("ajax:success", flights_results)
+  function flights_results(event, data){
+    $("#results").append(data)
+  }
 });

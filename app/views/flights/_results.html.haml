@@ -1,5 +1,5 @@
-%div.panel.panel-default
-	- @flights.map do |flight|
+- @flights.map do |flight|
+	%div.panel.panel-default		
 		.panel-body{style: "font-size:17px;"}
 			.col-xs-3.col-sm-2.col-md-2{align: "center"}
 				%span{style: "font-size:10px; color:gray;"} 
@@ -21,4 +21,4 @@
 				%span{style: " font-weight: bold;"} 
 					Price $
 					= flight["price"]
-					MXN
+				MXN
