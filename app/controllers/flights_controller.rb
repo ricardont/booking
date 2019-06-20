@@ -7,7 +7,6 @@ class FlightsController < ApplicationController
   			format.js
   			format.json { render json: @flights }
 		end
-	  #render :json => @flights
 	end
 	private 
 	def flight_params
