@@ -1,9 +1,12 @@
 	class Flights
 	  
 	  def self.search( params={})
+	  	params[:date_to] = params[:date_from] 
+	  	params[:return_to] = params[:return_from] 
 	  	flights_api_url = ENV['flights_api_url'].dup	
-	  	url = params.inject(flights_api_url) { | u, (k,v) |	 u <<  "&#{k.to_s}=#{v.to_s}"  }
-
+	  	url = params.inject(flights_api_url) { | u, (k,v) |	 u << "&#{k.to_s}=#{v.to_s}" }
+        p url
+        p params
 	    JSON.parse( RestClient.get url )["data"].map { | row | 
 	    routes = row['route'].map { |e| 
 	    	standarize_keys(e).slice('return', 'flight_no', 'city_from', 'fly_from', 'city_to', 'fly_to', 'airline', 'd_time', 'a_time', 'fare_classes', 'return').merge!('airline' => Airline.select("iata, name, logo_sm, logo_md, logo_lg").where(iata: e['airline'])[0].as_json(:except => :id)  )    

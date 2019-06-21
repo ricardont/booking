@@ -22,7 +22,7 @@
 						= image_tag airline['logo_sm'], style: "display:block; margin-left:auto; margin-right:auto;"
 						%p{style: "font-size:8px; color:gray; wrap:break-word; text-align: center;"}
 							= airline['name']
-							- if airline == flight['airlines'][1] && flight['airlines'].length > 1
+							- if airline == flight['airlines'][1] && flight['airlines'].length > 2
 								%p{style: "font-size:14px; color:gray; wrap:break-word; text-align: center;"} ... 	
 			.col-xs-3.col-sm-3.col-md-1{align: "center"}
 				%span{style: "font-size:12px; color:gray;"}

@@ -19,12 +19,15 @@
 				%div.col-md-2
 					=label_tag "date_from", "Fecha de Salida"
 					#date_from_cont.input-group.date				 
-						=text_field_tag :date_from, nil, class: "form-control",  value: (Date.today+1).strftime('%m/%d/%y'), min:Date.today
+						=text_field_tag :date_from, nil, class: "form-control",  value: (Date.today+1).strftime('%d/%m/%Y'), min:Date.today
 						%span.input-group-addon
 							%span.glyphicon.glyphicon-calendar
 				%div.col-md-2
-					=label_tag "return_from", "Return Date" 
-					=date_field_tag "return_from" , "return_from",  class:"form-control"
+					=label_tag "return_from", "Regreso"
+					#date_to_cont.input-group.date				 
+						=text_field_tag :return_from, nil, class: "form-control",  value: '', min:Date.today
+						%span.input-group-addon
+							%span.glyphicon.glyphicon-calendar
 			%div.form-row
 				%div.col-md-offset-5.col-md-2	
 					=label_tag "blank", " "

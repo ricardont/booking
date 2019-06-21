@@ -277,3 +277,21 @@ THIS DID NOT WORKED THIS TIME >>
 ```
 ##append rails from ajax result in container
 layout false in the controller , to get rid of of the layout from that response since that must be isolated
+##Bundler update
+I tried to update bundler to 2.0 
+```sh
+bundle update --bundler
+```
+and failed to deployed on heroku since this one supports until 2.0.1
+the following command will update to the most rescent v "2.0.2" "by the time this is being written"
+```sh
+gem uninstall bundler -v "1.17.1"
+gem install bundler -v "2.0.1"
+bundle install
+```
+commit the Gemfile.lock file and push it to heroku
+```sh
+git add Gemfile.lock
+git commit -m add "bundler update"
+git push heroku
+```

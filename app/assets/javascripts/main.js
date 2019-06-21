@@ -15,8 +15,15 @@ $(document).ready(function(){
     todayHighlight: true,
     startDate: new Date()  
   });
+  $("#date_to_cont").datepicker({ 
+    format: 'dd/mm/yyyy',
+    autoclose: true, 
+    todayHighlight: true,
+    startDate: new Date()  
+  });
   $("#search_form").on ("ajax:success", flights_results)
   function flights_results(event, data){
     $("#results").append(data)
   }
 });
+
