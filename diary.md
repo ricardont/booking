@@ -295,3 +295,6 @@ git add Gemfile.lock
 git commit -m add "bundler update"
 git push heroku
 ```
+##haml
+construct element id in haml with ruby value variable
+.item{:id => "item#{item.id}"}= item.body

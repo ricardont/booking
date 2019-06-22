@@ -1,36 +1,38 @@
-- @flights.map do |flight|
-	%div.panel.panel-default		
-		.panel-body{style: "font-size:17px;"}
-			.col-xs-3.col-sm-1.col-md-1.col-md-offset-1{align: "center"}
+- @flights.map.with_index do |flight, idx|
+	.panel.panel-default
+		.flight-panel.panel-heading.gray-md.row{:data => {:toggle => 'collapse', :target => "#flight-dtl#{idx}"}}
+			.col-xs-3.col-sm-1.col-md-1.col-md-offset-1.cntr
 				%span
 					= Time.at(flight["d_time"]).strftime("%B %e %Y")
-			.col-xs-3.col-sm-3.col-md-2{align: "center"}
-				%span{style: "font-size:12px; color:gray;"} 
+			.col-xs-3.col-sm-3.col-md-2.cntr
+				%span.gray-md 
 					Salida:
 					= Time.at(flight["d_time"]).strftime("%I:%M %p")
 					%br
 					Llegada:
 					= Time.at(flight["a_time"]).strftime("%I:%M %p")
-			.col-xs-3.col-sm-2.col-md-2{align: "center"}
-				%span{style: "font-size:12px; color:gray;"} 
+			.col-xs-3.col-sm-2.col-md-2.cntr
+				%span.gray-md 
 					= "#{flight['city_from']} (#{flight['fly_from']})" 
 					%br 
 					= "#{flight['city_to']} (#{flight['fly_to']})"
-			.col-xs-3.col-sm-2.col-md-2{align: "center"}
+			.col-xs-3.col-sm-2.col-md-2.cntr
 				- flight['airlines'][0..1].map do |airline|						
-					%div{style:"width: 37px; word-wrap: normal; display: inline-block;  margin-left:4px; margin-right:4x; vertical-align: top;"}
-						= image_tag airline['logo_sm'], style: "display:block; margin-left:auto; margin-right:auto;"
-						%p{style: "font-size:8px; color:gray; wrap:break-word; text-align: center;"}
+					%div.airline-cont
+						= image_tag airline['logo_sm'], class:"airline-img"
+						%p.gray-sm
 							= airline['name']
 							- if airline == flight['airlines'][1] && flight['airlines'].length > 2
-								%p{style: "font-size:14px; color:gray; wrap:break-word; text-align: center;"} ... 	
-			.col-xs-3.col-sm-3.col-md-1{align: "center"}
-				%span{style: "font-size:12px; color:gray;"}
+								%p.gray-md ... 	
+			.col-xs-3.col-sm-3.col-md-1.cntr
+				%span.gray-md
 					Duracion:
 					%br
 					= ((Time.at(flight["a_time"]) - Time.at(flight["d_time"]))/1.hour).round 
 					h	
-			.col-xs-3.col-sm-3.col-md-2{align: "center"}
-				%span{style: " font-weight: bold;"} 
+			.col-xs-3.col-sm-3.col-md-2.cntr
+				%span{style: "font-weight: bold;"} 
 					= number_to_currency(flight["price"], precision:1)
 					MXN
+		.panel-body.gray-md.row.collapse{:id => "flight-dtl#{idx}"}
+			= render :partial => "results_dtl"
