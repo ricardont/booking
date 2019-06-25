@@ -1,10 +1,31 @@
-%ul
+%strong Ida
 - routes.map.with_index do |route, index|
-	%strong
-	- if index == 0
-		%li
-			= route["city_from"] 
-	%li
-	%li
-	%li 
-		= route["city_to"]
+	- unless (routes[0] == route)  
+		%div.row
+			%div.col-xs-5.col-sm-5.col-md-5
+				%p.gray-sm-big.routes-end-dots
+					= "-- Escala en #{route['city_from']}, #{ Time.at(route["d_time"] - routes[index-1]["a_time"]).utc.strftime("%-Hh, %-Mm")} --" 
+		%br
+	%div.row
+		%div.col-xs-4.col-sm-4.col-md-4
+			%ul.routes-end-dots
+				%li
+					= Time.at(route["d_time"]).strftime("%I:%M %p")
+					,
+					= "#{route['city_from']} (#{route['fly_from']})"
+				%li.gray-xsm.routes-end-dots
+				%li.gray-xsm.routes-end-dots
+				%li
+					= Time.at(route["a_time"]).strftime("%I:%M %p")
+					,
+					= "#{route['city_to']} (#{route['fly_to']})"
+		%div.col-xs-1.col-sm-1.col-md-1
+			Duracion
+			%br
+			=  Time.at(route["a_time"] - route["d_time"]).utc.strftime("%-Hh, %-Mm")
+		%div.col-xs-1.col-sm-1.col-md-1
+			= image_tag route['airline']['logo_sm'], class:"airline-img"
+			%p.gray-sm
+				= "#{route['airline']['name']}" 	
+
+

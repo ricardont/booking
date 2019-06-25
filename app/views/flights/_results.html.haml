@@ -4,7 +4,7 @@
 			.col-xs-3.col-sm-1.col-md-1.col-md-offset-1.cntr
 				%span
 					= Time.at(flight["d_time"]).strftime("%B %e %Y")
-			.col-xs-3.col-sm-3.col-md-2.cntr
+			.col-xs-2.col-sm-3.col-md-2.cntr
 				%span.gray-md 
 					Salida:
 					= Time.at(flight["d_time"]).strftime("%I:%M %p")
@@ -18,7 +18,7 @@
 					= "#{flight['city_to']} (#{flight['fly_to']})"
 			.col-xs-3.col-sm-2.col-md-2.cntr
 				- flight['airlines'][0..1].map do |airline|						
-					%div.airline-cont
+					%div.airline-cont.cntr
 						= image_tag airline['logo_sm'], class:"airline-img"
 						%p.gray-sm
 							= airline['name']
@@ -28,8 +28,7 @@
 				%span.gray-md
 					Duracion:
 					%br
-					= ((Time.at(flight["a_time"]) - Time.at(flight["d_time"]))/1.hour).round 
-					h	
+					=  Time.at(flight["a_time"] - flight["d_time"]).utc.strftime("%-Hh, %-Mm") 	
 			.col-xs-3.col-sm-3.col-md-2.cntr
 				%span{style: "font-weight: bold;"} 
 					= number_to_currency(flight["price"], precision:1)
