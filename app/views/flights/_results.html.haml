@@ -1,6 +1,6 @@
 - @flights.map.with_index do |flight, idx|
 	.panel.panel-default
-		.flight-panel.panel-heading.gray-md.row{:data => {:toggle => 'collapse', :target => "#flight-dtl#{idx}"}}
+		.flight-panel.panel-heading.gray-md.row{ data: { toggle: 'collapse', target: "#flight-dtl#{idx}"}}
 			.col-xs-3.col-sm-1.col-md-1.col-md-offset-1.cntr
 				%span
 					= Time.at(flight["d_time"]).strftime("%B %e %Y")
@@ -35,4 +35,4 @@
 					= number_to_currency(flight["price"], precision:1)
 					MXN
 		.panel-body.gray-md.row.collapse{:id => "flight-dtl#{idx}"}
-			= render :partial => "results_dtl"
+			= render partial: "results_dtl",  locals: { routes: flight["routes"] } 

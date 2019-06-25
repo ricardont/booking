@@ -1,3 +1,11 @@
-%div
+%ul
+- routes.map.with_index do |route, index|
 	%strong
-		hola
+		= route_header
+	- if index == 0
+		%li
+			= route["city_from"] 
+	%li
+	%li
+	%li 
+		= route["city_to"]
