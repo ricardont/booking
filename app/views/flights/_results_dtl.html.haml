@@ -1,7 +1,6 @@
 %ul
 - routes.map.with_index do |route, index|
 	%strong
-		= route_header
 	- if index == 0
 		%li
 			= route["city_from"] 
