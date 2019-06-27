@@ -13,8 +13,10 @@
 					= Time.at(route["d_time"]).strftime("%I:%M %p")
 					,
 					= "#{route['city_from']} (#{route['fly_from']})"
-				%li.gray-xsm.routes-end-dots
-				%li.gray-xsm.routes-end-dots
+				%ul.routes-dots
+					%li.gray-xsm
+					%li.gray-xsm
+				%ul
 				%li
 					= Time.at(route["a_time"]).strftime("%I:%M %p")
 					,

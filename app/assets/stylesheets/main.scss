@@ -1,11 +1,11 @@
 .gray-md{font-size:15px; color:gray;}
-.gray-sm-big{font-size:12px; color:gray; wrap:break-word; text-align: center;}
-.gray-sm{font-size:10px; color:gray; wrap:break-word; text-align: center;}
-.gray-xsm{font-size:9px; color:gray; wrap:break-word; text-align: center;}
-.cntr{ align: "center"; }
-.airline-cont{width: 37px; word-wrap: normal; display: inline-block;  margin-left:6px; margin-right:6x; vertical-align: top;}
+.gray-sm-big{font-size:12px; color:gray;  word-wrap: break-word; text-align: center;}
+.gray-sm{font-size:10px; color:gray;  word-wrap: break-word; text-align: center;}
+.gray-xsm{font-size:9px; color:gray;  word-wrap: break-word; text-align: center;}
+.cntr{ align: center; }
+.airline-cont{width: 60px; word-wrap: normal; display: inline-block;   vertical-align: top;}
 .flight-dtl-cont{ word-wrap: normal; display: inline-block;  margin-left:6px; margin-right:6x; vertical-align: top;}
 .airline-img{ display:block; margin-left:auto; margin-right:auto;}
 .flight-panel:hover{cursor:pointer;}
-.routes-end-dots{ list-style-type:circle !important;}
-.routes-dots{ list-style-type:square !important;}
+.routes-end-dots{ list-style-type:circle !important; }
+.routes-dots{ list-style-type:circle !important; margin-left:-43px;}

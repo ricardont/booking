@@ -16,11 +16,11 @@
 					= "#{flight['city_from']} (#{flight['fly_from']})" 
 					%br 
 					= "#{flight['city_to']} (#{flight['fly_to']})"
-			.col-xs-3.col-sm-2.col-md-2.cntr
+			.col-xs-3.col-sm-2.col-md-2{ align:"center"}
 				- flight['airlines'][0..1].map do |airline|						
-					%div.airline-cont.cntr
+					%div.airline-cont{ align:"center"}
 						= image_tag airline['logo_sm'], class:"airline-img"
-						%p.gray-sm
+						%p.gray-sm{ align:"center"}
 							= airline['name']
 							- if airline == flight['airlines'][1] && flight['airlines'].length > 2
 								%p.gray-md ... 	
