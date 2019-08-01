@@ -34,4 +34,9 @@
 					= number_to_currency(flight["price"], precision:1)
 					MXN
 		.panel-body.gray-md.row.collapse{:id => "flight-dtl#{idx}"}
-			= render partial: "results_dtl",  locals: { routes: flight["routes"] } 
+			.col-md-6
+				%strong Ida
+				= render partial: "results_dtl",  locals: { routes: flight["routes"], rtrn:0 } 		
+			.col-md-6 
+				%strong Vuelta
+				= render partial: "results_dtl",  locals: { routes: flight["routes"], rtrn:1 } 						

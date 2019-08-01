@@ -6,6 +6,7 @@
 .airline-cont{width: 60px; word-wrap: normal; display: inline-block;   vertical-align: top;}
 .flight-dtl-cont{ word-wrap: normal; display: inline-block;  margin-left:6px; margin-right:6x; vertical-align: top;}
 .airline-img{ display:block; margin-left:auto; margin-right:auto;}
-.flight-panel:hover{cursor:pointer;}
+.flight-panel:hover{cursor:pointer; margin-left:0px !important; margin-right:0px !important;}
+.flight-panel{ margin-left:0px !important; margin-right:0px !important;}
 .routes-end-dots{ list-style-type:circle !important; }
 .routes-dots{ list-style-type:circle !important; margin-left:-43px;}
