@@ -1,0 +1,6 @@
+					%div{style:"width: 37px; word-wrap: normal; display: inline-block;  margin-left:4px; margin-right:4x; vertical-align: top;"}
+						= image_tag airline['logo_sm'], style: "display:block; margin-left:auto; margin-right:auto;"
+						%p{style: "font-size:8px; color:gray; wrap:break-word; text-align: center;"}
+							= airline['name']
+							- if airline == flight['airlines'][1] && flight['airlines'].length > 1
+								%p{style: "font-size:14px; color:gray; wrap:break-word; text-align: center;"} ... 	

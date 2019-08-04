@@ -1,0 +1,42 @@
+- @flights.map.with_index do |flight, idx|
+	.panel.panel-default
+		.flight-panel.panel-heading.gray-md.row{ data: { toggle: 'collapse', target: "#flight-dtl#{idx}"}}
+			.col-xs-3.col-sm-1.col-md-1.col-md-offset-1.cntr
+				%span
+					= Time.at(flight["d_time"]).strftime("%B %e %Y")
+			.col-xs-2.col-sm-3.col-md-2.cntr
+				%span.gray-md 
+					Salida:
+					= Time.at(flight["d_time"]).strftime("%I:%M %p")
+					%br
+					Llegada:
+					= Time.at(flight["a_time"]).strftime("%I:%M %p")
+			.col-xs-3.col-sm-2.col-md-2.cntr
+				%span.gray-md 
+					= "#{flight['city_from']} (#{flight['fly_from']})" 
+					%br 
+					= "#{flight['city_to']} (#{flight['fly_to']})"
+			.col-xs-3.col-sm-2.col-md-2{ align:"center"}
+				- flight['airlines'][0..1].map do |airline|						
+					%div.airline-cont{ align:"center"}
+						= image_tag airline['logo_sm'], class:"airline-img"
+						%p.gray-sm{ align:"center"}
+							= airline['name']
+							- if airline == flight['airlines'][1] && flight['airlines'].length > 2
+								%p.gray-md ... 	
+			.col-xs-3.col-sm-3.col-md-1.cntr
+				%span.gray-md
+					Duracion:
+					%br
+					=  Time.at(flight["a_time"] - flight["d_time"]).utc.strftime("%-Hh, %-Mm") 	
+			.col-xs-3.col-sm-3.col-md-2.cntr
+				%span{style: "font-weight: bold;"} 
+					= number_to_currency(flight["price"], precision:1)
+					MXN
+		.panel-body.gray-md.row.collapse{:id => "flight-dtl#{idx}"}
+			.col-md-6
+				%strong Ida
+				= render partial: "results_dtl",  locals: { routes: flight["routes"], rtrn:0 } 		
+			.col-md-6 
+				%strong Vuelta
+				= render partial: "results_dtl",  locals: { routes: flight["routes"], rtrn:1 } 						

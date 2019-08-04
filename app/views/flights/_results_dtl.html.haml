@@ -1,0 +1,32 @@
+- routes = routes.select {|rt| rt["return"] == rtrn}
+- routes.map.with_index do |route, index|
+	%div.row
+		%div.col-xs-10.col-sm-8.col-md-8
+			%ul.routes-end-dots
+				%li
+					= Time.at(route["d_time"]).strftime("%I:%M %p")
+					,
+					= "#{route['city_from']} (#{route['fly_from']})"
+				%ul.routes-dots
+					%li.gray-xsm
+					%li.gray-xsm
+				%ul
+				%li
+					= Time.at(route["a_time"]).strftime("%I:%M %p")
+					,
+					= "#{route['city_to']} (#{route['fly_to']})"
+		%div.col-xs-2.col-sm-2.col-md-2
+			Duracion
+			%br
+			=  Time.at(route["a_time"] - route["d_time"]).utc.strftime("%-Hh, %-Mm")
+		%div.col-xs-2.col-sm-2.col-md-2
+			= image_tag route['airline']['logo_sm'], class:"airline-img"
+			%p.gray-sm 
+				= "#{route['airline']['name']}"
+	- unless (route == routes[-1] )  
+		%div.row
+			%div.col-xs-12.col-sm-12.col-md-12
+				%p.gray-sm-big.routes-end-dots
+					= "-- Escala en #{route['city_to']}, #{ Time.at( routes[index+1]["d_time"] - route["a_time"] ).utc.strftime("%-Hh, %-Mm") }" 
+
+
