@@ -16,6 +16,11 @@ install node js
 ```sh
   gem install rails
 ```
+## error in working proyect can't find gem bundler (>= 0.a) with executable bundle (Gem::GemNotFoundException) during bundle install with gem
+```sh
+ $ gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
+```
+
 ## Create new app without mini test, with rspec, webmock and postgresql
 ### Set up postgresql at the os (ubuntu)
 * if you don't do this you will not be able to start postgresql service *
