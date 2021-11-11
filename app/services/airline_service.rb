@@ -6,7 +6,7 @@ class AirlineService
   		logo_sizes = {sm: "32", md: "64", lg: "128"}
   		logo_sizes.inject({ "iata_code" => iata, "name" => get_name(iata) }) { |h, (k,v)| 
   			h.merge!( "logo_#{k}" => "#{airline_logo_url}#{v}/#{iata}.png" )  
-  		}
+    }
 		end  
   end
   private

@@ -1,31 +1,29 @@
-	class Flights
-	  
-	  def self.search( params={})
-	  	params[:date_to] = params[:date_from] 
-	  	params[:return_to] = params[:return_from] 
-	  	flights_api_url = ENV['flights_api_url'].dup	
-	  	url = params.inject(flights_api_url) { | u, (k,v) |	 u << "&#{k.to_s}=#{v.to_s}" }
-        p url
-        p params
-	    JSON.parse( RestClient.get url )["data"].map { | row | 
-	    routes = row['route'].map { |e| 
-	    	standarize_keys(e).slice('return', 'flight_no', 'city_from', 'fly_from', 'city_to', 'fly_to', 'airline', 'd_time', 'a_time', 'fare_classes', 'return').merge!('airline' => Airline.select("iata, name, logo_sm, logo_md, logo_lg").where(iata: e['airline'])[0].as_json(:except => :id)  )    
-	    }
-	    flight_airlines = row['airlines'].map { |e| 
-	    	Airline.select(:iata, :name, :logo_sm, :logo_md, :logo_lg).where(iata: e)[0].as_json(:except => :id)    
-	    }
-	    standarize_keys(row).slice('fly_from', 'fly_to', 'country_from', 'country_to', 'city_from', 'city_to', 'price', 'flight_duration', 'd_time', 'a_time', 'distance').merge!('routes' => routes).merge!('airlines' => flight_airlines)
-	   }
-	  end
-	  private
-		def self.standarize_keys(hsh)
-			unless hsh == nil
-				hsh.inject({}) { |h, (k,v)| h.merge!(standarize_string(k)=> v)  }
-			end	
-		end
-		def self.standarize_string(str)
-			unless str == nil
-	    	str.to_s.split('').inject("") { |new_s, s| s == s.upcase ? new_s << "_#{s.downcase}" : new_s << s }
-	  	end
-		end
+require 'uri'
+require 'net/http'
+require 'openssl'
+WebMock.allow_net_connect!
+class Flights	  
+	def self.search 
+		url = URI("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/2021-12")
+		http = Net::HTTP.new(url.host, url.port)
+		http.use_ssl = true
+		http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+		request = Net::HTTP::Get.new(url)
+		request["x-rapidapi-host"] = 'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com'
+		request["x-rapidapi-key"]  = '5f5dd04520msha85586c167e52bdp141f38jsn8356613183c6'
+		response = JSON.parse(http.request(request).read_body, object_class: OpenStruct)
+		response[:Quotes].map { |f|		
+			carriers    = response[:Carriers].select { | p | f.OutboundLeg.CarrierIds.include?(p.CarrierId)   }
+			origin      = response[:Places].select { | p | p.PlaceId == f.OutboundLeg.OriginId }
+			destination = response[:Places].select { | p | p.PlaceId == f.OutboundLeg.DestinationId }
+			OpenStruct.new(
+				carriers: carriers ,
+				direct: f.Direct,
+				departure_date: f.OutboundLeg.DepartureDate,
+				origin: origin[0],
+				destination: destination,
+				price: f.MinPrice 
+			)			
+		}
 	end
+end

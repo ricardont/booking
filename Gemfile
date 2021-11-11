@@ -1,13 +1,18 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.4.0'
+ruby '2.4.0
+'
 # Use SCSS for stylesheets
 gem 'sassc-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2', '>= 5.2.2.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+
+group :production do
+  gem 'pg', '>= 0.18', '< 2.0'
+end
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use Uglifier as compressor for JavaScript assets
@@ -48,6 +53,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'webmock'
   gem 'database_cleaner'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -58,6 +64,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+gem 'excon'
 
 
 
