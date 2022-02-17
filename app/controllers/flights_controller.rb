@@ -3,7 +3,8 @@ class FlightsController < ApplicationController
 	layout false
 	def search
 	  	# @flights = Flights.search(params.to_h)
-	  	@flights = Flights.search
+		# render json: @flights, status: 200
+		render json: {"status":"online"}, status: 200
 	end
 	# private 
 	# def params
