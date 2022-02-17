@@ -2,9 +2,9 @@ class FlightsController < ApplicationController
 	protect_from_forgery with: :exceptions
 	layout false
 	def search
-	  	# @flights = Flights.search(params.to_h)
-		# render json: @flights, status: 200
-		render json: {"status":"online"}, status: 200
+	  	@flights = Flights.search
+		render json: @flights, status: 200
+		# render json: {"status":"online"}, status: 200
 	end
 	# private 
 	# def params

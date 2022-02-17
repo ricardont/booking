@@ -20,6 +20,7 @@ csv.each do |row|
 	t.altitude = row[7]
 	t.dst = row[8]
   t.save
+  p t
 end
 
 
@@ -34,4 +35,5 @@ end
   t.logo_md = "#{airline_logo_url}/64/#{row['id']}.png"
   t.logo_lg = "#{airline_logo_url}/128/#{row['id']}.png"
   t.save
+  p t
  }
